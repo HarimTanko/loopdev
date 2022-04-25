@@ -14,7 +14,7 @@ const Nav = styled.nav`
   z-index: 100;
   position: fixed;
   width: 100%;
-  background: #3a71c9;
+  background: rgba(58, 113, 201, 0.6);
 `;
 
 const NavLink = css`
