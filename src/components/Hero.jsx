@@ -72,6 +72,7 @@ const HeroImage = styled.img`
 `;
 const HeroContent = styled.div`
   position: relative;
+  top: 5rem;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -81,7 +82,7 @@ const HeroContent = styled.div`
 
   h1 {
     font-size: clamp(1rem, 10vw, 6rem);
-    font-weight: 400;
+    font-weight: 700;
     text-transform: uppercase;
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
     text-align: left;

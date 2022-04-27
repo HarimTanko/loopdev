@@ -5,7 +5,7 @@ export const menuData = [
   },
   {
     title: 'Investors',
-    link: '/investors',
+    link: '/invest',
   },
   {
     title: 'Developments',

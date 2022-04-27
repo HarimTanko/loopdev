@@ -65,6 +65,13 @@ const NavMenuLinks = styled(Link)`
   font-size: 18px;
 `;
 
+const NavDropDown = styled.div`
+  position: relative;
+  top: 80px;
+  width: 200px;
+  height: 200px;
+`;
+
 const NavBtn = styled.div`
   display: flex;
   align-items: center;
@@ -75,11 +82,11 @@ const NavBtn = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
   return (
     <Nav>
       <Logo to='/'>Loop</Logo>
-      <MenuBars>
+      <MenuBars onClick={toggle}>
         <IconContext.Provider>
           <AiOutlineBars />
         </IconContext.Provider>
