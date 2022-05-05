@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { menuData } from '../data/menuData';
 import { Button } from './Button';
 import { AiOutlineBars } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
+import NavDrop from './NavDrop';
+
+import { menuData } from '../data/menuData';
+
+import { devData } from '../data/devData';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { menuToggle, menuClose } from '../app/slices/uiSlice';
+import MenuItems from './MenuItems';
 
 const Nav = styled.nav`
   height: 60px;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0 1rem;
   z-index: 100;
   position: fixed;
   width: 100%;
@@ -51,25 +60,45 @@ const MenuBars = styled(AiOutlineBars)`
     
   }
 `;
-const NavMenu = styled.div`
+const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   margin-right: -48px;
+  height: 100%;
 
   @media screen and (max-width: 933px) {
     display: none;
   }
 `;
-const NavMenuLinks = styled(Link)`
-  ${NavLink}
-  font-size: 18px;
+
+const LinkContainer = styled.div`
+  position: relative;
 `;
 
-const NavDropDown = styled.div`
-  position: relative;
-  top: 80px;
-  width: 200px;
-  height: 200px;
+const NavMenuLinks = styled(Link)`
+  ${NavLink}
+  font-size: 1.5rem;
+  padding: 0.2rem 0;
+  margin-bottom: 0.2rem;
+
+  &:hover {
+    color: #000;
+    transition: 0.3s all ease-in-out;
+    transform: translateY(-4px);
+  }
+`;
+
+const SubList = styled(Link)`
+background: none
+border: none;
+text-decoration: none;
+color:#fff;
+font-family: inherit;
+font-size: 1.2rem;
+cursor: pointer;
+
+
+
 `;
 
 const NavBtn = styled.div`
