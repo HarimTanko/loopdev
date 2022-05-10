@@ -4,15 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import { AiOutlineBars } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
-import NavDrop from './NavDrop';
 
-import { menuData } from '../data/menuData';
-
-import { devData } from '../data/devData';
-
-import { useDispatch, useSelector } from 'react-redux';
-
-import { menuToggle, menuClose } from '../app/slices/uiSlice';
 import MenuItems from './MenuItems';
 
 const Nav = styled.nav`
@@ -57,6 +49,7 @@ const MenuBars = styled(AiOutlineBars)`
     position: absolute;
     top:0;
     right: 0;
+    margin-top: 12px;
     
   }
 `;
@@ -69,10 +62,6 @@ const NavMenu = styled.ul`
   @media screen and (max-width: 933px) {
     display: none;
   }
-`;
-
-const LinkContainer = styled.div`
-  position: relative;
 `;
 
 const NavMenuLinks = styled(Link)`
@@ -111,7 +100,18 @@ const NavBtn = styled.div`
   }
 `;
 
-const Navbar = ({ toggle }) => {
+const Navbar = ({ toggle, isOpen }) => {
+  const [drop, setDrop] = useState(false);
+  const [dropLet, setDropLet] = useState(false);
+
+  const navi = () => {
+    setDrop(!drop);
+  };
+
+  const toggleLet = () => {
+    setDropLet(!dropLet);
+  };
+
   return (
     <Nav>
       <Logo to='/'>Loop</Logo>
@@ -122,14 +122,50 @@ const Navbar = ({ toggle }) => {
       </MenuBars>
 
       <NavMenu>
-        {menuData.map((item, index) => (
-          <NavMenuLinks to={item.link} key={index}>
-            {item.title}
-          </NavMenuLinks>
-        ))}
+        <MenuItems link={'/'} label={'Home'} />
+
+        <MenuItems link={'/invest'} label={'Investors'} />
+        <MenuItems
+          dropdownContent={
+            <>
+              <NavMenuLinks to='/westend'>westend</NavMenuLinks>
+              <NavMenuLinks to='/upham'>upham</NavMenuLinks>
+              <NavMenuLinks to='/lee'>lee</NavMenuLinks>
+              <NavMenuLinks to='/btopm'>btopm</NavMenuLinks>
+            </>
+          }
+          link={'/developments'}
+          label={'Developments'}
+        />
+        <MenuItems
+          dropdownContent={
+            <>
+              <NavMenuLinks to='/westend'>westend</NavMenuLinks>
+              <NavMenuLinks to='/upham'>upham</NavMenuLinks>
+              <NavMenuLinks to='/lee'>lee</NavMenuLinks>
+              <NavMenuLinks to='/btopm'>btopm</NavMenuLinks>
+            </>
+          }
+          link={'lettings'}
+          label={'Lettings'}
+        />
+        <MenuItems
+          dropdownContent={
+            <>
+              <NavMenuLinks to='/westend'>westend</NavMenuLinks>
+              <NavMenuLinks to='/upham'>upham</NavMenuLinks>
+              <NavMenuLinks to='/lee'>lee</NavMenuLinks>
+              <NavMenuLinks to='/btopm'>btopm</NavMenuLinks>
+            </>
+          }
+          link={'/construction'}
+          label={'Construction'}
+        />
+        <MenuItems link={'/about'} label={'About'} />
       </NavMenu>
+
       <NavBtn>
-        <Button to='#' primary='true'>
+        <Button to='/contact' primary='true'>
           Contact
         </Button>
       </NavBtn>

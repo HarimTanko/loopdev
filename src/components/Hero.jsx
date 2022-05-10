@@ -17,6 +17,10 @@ const HeroSection = styled.section`
   max-height: 1100px;
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    height: 60vh;
+  }
 `;
 
 const HeroWrapper = styled.div`
@@ -80,6 +84,10 @@ const HeroContent = styled.div`
   width: calc(100% - 100px);
   color: #fff;
 
+  @media screen and (max-width: 768px) {
+    top: 1rem;
+  }
+
   h1 {
     font-size: clamp(1rem, 10vw, 6rem);
     font-weight: 700;
@@ -93,6 +101,10 @@ const HeroContent = styled.div`
     font-size: clamp(0.5rem, 8vw, 2rem);
     font-weight: bold;
     margin-bottom: 1.5rem;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 const Arrow = styled(IoMdArrowForward)`
@@ -131,19 +143,19 @@ const Hero = ({ slides }) => {
   const length = slides.length;
   const timeout = useRef(null);
 
-  //   useEffect(() => {
-  //     const nextSlide = () => {
-  //       setCurrent((current) => (current === length - 1 ? 0 : current + 1));
-  //     };
+  useEffect(() => {
+    const nextSlide = () => {
+      setCurrent((current) => (current === length - 1 ? 0 : current + 1));
+    };
 
-  //     timeout.current = setTimeout(nextSlide, 3000);
+    timeout.current = setTimeout(nextSlide, 3000);
 
-  //     return function () {
-  //       if (timeout.current) {
-  //         clearTimeout(timeout.current);
-  //       }
-  //     };
-  //   }, [current, length]);
+    return function () {
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+    };
+  }, [current, length]);
 
   const nextSlide = () => {
     if (timeout.current) {

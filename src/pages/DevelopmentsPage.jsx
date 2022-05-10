@@ -1,22 +1,67 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { BsGraphUp } from 'react-icons/bs';
+import InvImage from '../images/InvestPageImg.jpg';
+
 import { developmentsData } from '../data/developmentsData';
-import Development from '../components/Development';
 
 const HeadingContainer = styled.div`
-  height: 30vh;
+  height: 25vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
+const Header = styled.div`
+  position: relative;
+  height: 40vh;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  @media screen and (max-width: 930px) {
+    height: 20vh;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 40vh;
+  }
+`;
+
+const HeaderImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 40vh;
+  object-fit: cover;
+
+  @media screen and (max-width: 930px) {
+    height: 20vh;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 40vh;
+  }
+`;
+
 const DevelopmentHeading = styled.h1`
+  postion: relative;
+  top: 0;
+  left: 0;
+
+  z-index: 20;
   font-size: 3rem;
   font-family: 'Paytone One', sans-serif;
   text-transform: uppercase;
-  color: #548be3;
+  color: #fff;
+  margin-left: 2rem;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 `;
+
 const MainContainer = styled.div`
   padding: 0 2rem;
   display: grid;
@@ -25,6 +70,14 @@ const MainContainer = styled.div`
   grid-row-gap: 5rem;
   grid-column-gap: 2rem;
   margin-bottom: 4rem;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const DevelopmentContainer = styled(Link)`
   width: 100%;
@@ -36,6 +89,8 @@ const DevelopmentContainer = styled(Link)`
 `;
 
 const ImageContainer = styled.div`
+  position: relative;
+  cursor: pointer;
   height: 400px;
   border: 0.5px solid #aad6fa;
 `;
@@ -45,43 +100,99 @@ const DevelopmentImage = styled.img`
   height: 100%;
 `;
 
+const ImageContent = styled.div`
+  background: transparent;
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 400px;
+
+  opacity: 0;
+  transition: 0.5s all ease-in-out;
+
+  :hover {
+    opacity: 1;
+    background: rgba(58, 113, 201, 0.6);
+  }
+`;
+
 const TextContainer = styled.div`
   width: 100%;
-  padding: 1rem 0.8rem;
+  padding: 5rem 0.8rem;
+  display: flex;
 
-  color: #548be3;
+  flex-direction: column;
+
+  color: #fff;
+
+  span {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+  }
+  div {
+    display: flex;
+    align-items: center;
+  }
 `;
 const DevelopmentTitle = styled.h3`
-  font-size: 2rem;
-  text-transform: uppercase;
-  padding: 1.5rem 0;
-`;
-const DevelopmentROI = styled.p`
   font-size: 1.5rem;
-  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+`;
+const DevPrices = styled.p`
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+`;
+
+const GraphIcon = styled(BsGraphUp)`
+  font-size: 1.2rem;
+  margin-left: 10px;
+  color: #088036;
+  font-weight: bold;
 `;
 
 const DevelopmentsPage = () => {
-  const id = useParams();
-
   return (
     <>
-      <HeadingContainer>
-        <DevelopmentHeading>Our Developments</DevelopmentHeading>
-      </HeadingContainer>
+      <Header>
+        <HeaderImage src={InvImage} />
+        <DevelopmentHeading>Developments</DevelopmentHeading>
+      </Header>
 
       <MainContainer>
         {developmentsData.map((item, index) => (
           <DevelopmentContainer to={`/developments/${item.path}`} key={index}>
             <ImageContainer>
               <DevelopmentImage src={item.img} />
+
+              <ImageContent>
+                <TextContainer>
+                  <DevelopmentTitle>{item.title1}</DevelopmentTitle>
+                  <DevPrices>Purchase Method: {item.purchaseMethod}</DevPrices>
+                  <DevPrices>Purchase Price: £{item.purchasePrice}</DevPrices>
+                  <div>
+                    <DevPrices>
+                      Sale Price:{' '}
+                      {item.salePrice && (
+                        <>
+                          <span>£{item.salePrice}</span>
+                          <GraphIcon />
+                        </>
+                      )}{' '}
+                    </DevPrices>{' '}
+                  </div>
+                  <DevPrices>
+                    {' '}
+                    ROI: <span>{item.ROI}</span>{' '}
+                  </DevPrices>
+                </TextContainer>
+              </ImageContent>
             </ImageContainer>
-            <TextContainer>
-              <DevelopmentTitle>{item.title1}</DevelopmentTitle>
-              <DevelopmentROI>ROI: {item.ROI}</DevelopmentROI>
-            </TextContainer>
           </DevelopmentContainer>
-          //   <Development key={index} id={id} item={item} />
         ))}
       </MainContainer>
     </>

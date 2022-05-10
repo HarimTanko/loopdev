@@ -27,12 +27,47 @@ const MainContainer = styled.div`
   max-width: 1440px;
   gap: 2em;
   justify-content: space-between;
+
+  @media screen and (max-width: 920px) {
+  }
 `;
 
 const TextContainer = styled.div`
+  padding: 1rem 5rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 5rem 1.5rem 0 1.5rem;
+
+  @media screen and (max-width: 960px) {
+    padding: 1rem 2rem;
+  }
+`;
+
+const TopHalf = styled.div`
+  display: flex;
+  text-transform: uppercase;
+
+  @media screen and (max-width: 960px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+`;
+const BottomHalf = styled.div`
+  width: 100%;
+  padding: 2rem 0;
+`;
+
+const HeadDescription = styled.p`
+  font-size: 1.8rem;
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.5;
+
+  @media screen and (max-width: 960px) {
+    font-size: 1.4rem;
+    text-align: center;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -41,7 +76,7 @@ const InfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
   }
 `;
@@ -49,57 +84,52 @@ const InfoContainer = styled.div`
 const InfoImageContainer = styled.div`
   width: 50%;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
   }
 `;
 const InfoImage = styled.img`
   width: 100%;
-
+  height: 500px;
   margin: 10px;
   box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.5);
-`;
 
-const HeadingImage = styled.img`
-  width: 100%;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 300px;
+  }
 `;
 
 const MainHeading = styled.h1`
-  font-size: 3.5rem;
+  font-size: 4rem;
   line-height: 1.1;
   margin-bottom: 1rem;
   color: #548be3;
   text-transform: uppercase;
 `;
 
-const SubHeading = styled.h1`
+const SubHeading = styled.h2`
   text-transform: uppercase;
-  font-size: 1.8rem;
+  font-size: 2.8rem;
   margin-bottom: 1rem;
-`;
-const PurchaseMethod = styled.p`
-  font-size: 1.3rem;
-  line-height: 1.6rem;
-  margin-bottom: 1rem;
-
-  h4 {
-    color: green;
-  }
-
-  span {
-    color: #548be3;
-    margin-left: 5px;
-  }
 `;
 
 const ImagesContainer = styled.div`
-  margin: 5rem 1.5rem 0 1.5rem;
+  margin: 1rem 1.5rem 0 2.5rem;
   display: grid;
   grid-gap: 15px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 400px;
 
   margin-bottom: 3rem;
+
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 660px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ImageStyle = css`
@@ -119,9 +149,8 @@ const GalleryContainer = styled.div`
   cursor: pointer;
 `;
 
-const ImageContent = styled.h2`
+const ImageContent = styled.div`
   background: transparent;
-  font-size: 5rem;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -131,6 +160,16 @@ const ImageContent = styled.h2`
   transition: opacity 1s ease;
   color: #fff;
   opacity: 0;
+
+  h4 {
+    margin: 1rem 2rem;
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin: 0 2rem;
+  }
 
   &:hover {
     opacity: 1;
@@ -196,6 +235,31 @@ const arrowButtons = css`
   }
 `;
 
+const GreenSpan = styled.span`
+  color: #088036;
+`;
+const PurchaseMethod = styled.p`
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+
+  ${GreenSpan} {
+    color: #088036;
+  }
+
+  h4 {
+    color: green;
+  }
+
+  span {
+    color: #548be3;
+    margin-left: 5px;
+    font-family: 'Quicksand', sans-serif;
+  }
+`;
+
 const PrevArrow = styled(AiOutlineArrowLeft)`
   ${arrowButtons}
   left: 0px;
@@ -217,6 +281,8 @@ const SingleDevelopment = () => {
     title2,
     img,
     images,
+    captionTitle,
+    caption,
     purchaseMethod,
     purchasePrice,
     salePrice,
@@ -226,8 +292,6 @@ const SingleDevelopment = () => {
     note,
   } = development;
 
-  console.log(development.images);
-
   const length = images.length;
 
   const [clickedImg, setClickedImg] = useState(null);
@@ -236,7 +300,9 @@ const SingleDevelopment = () => {
   const nextSlide = () => {
     if (currentIndex + 1 >= length) {
       setCurrentIndex(0);
-      const newUrl = images[0];
+
+      const newUrl = images[0].image;
+
       setClickedImg(newUrl);
       return;
     }
@@ -247,14 +313,15 @@ const SingleDevelopment = () => {
     });
 
     const newItem = newUrl[0];
-    setClickedImg(newItem);
+    setClickedImg(newItem.image);
+
     setCurrentIndex(newIndex);
   };
 
   const prevSlide = () => {
     if (currentIndex === 0) {
       setCurrentIndex(length - 1);
-      const newUrl = images[length - 1];
+      const newUrl = images[length - 1].image;
 
       setClickedImg(newUrl);
       return;
@@ -266,42 +333,50 @@ const SingleDevelopment = () => {
     });
 
     const newItem = newUrl[0];
-    setClickedImg(newItem);
+
+    setClickedImg(newItem.image);
     setCurrentIndex(newIndex);
   };
 
   const handleClick = (item, index) => {
     setCurrentIndex(index);
-    setClickedImg(item);
+    setClickedImg(item.image);
   };
 
-  const {} = development;
   return (
     <Section>
       <MainContainer>
         <TextContainer>
-          <InfoContainer>
-            <MainHeading>{title1}</MainHeading>
-            <SubHeading>{title2}</SubHeading>
-            <PurchaseMethod>
-              Purchase Method: <span>{purchaseMethod}</span>{' '}
-            </PurchaseMethod>
-            <PurchaseMethod>
-              Purchase Price: <span>£{purchasePrice}</span>{' '}
-            </PurchaseMethod>
-            <PurchaseMethod>
-              Sale Price: <span>£{salePrice}</span>
-            </PurchaseMethod>
-            <PurchaseMethod>
-              ROI:<span>{ROI}</span>{' '}
-            </PurchaseMethod>
-            <PurchaseMethod> {heading}</PurchaseMethod>
-            <PurchaseMethod>{description}</PurchaseMethod>
-          </InfoContainer>
+          <TopHalf>
+            <InfoContainer>
+              <MainHeading>{title1}</MainHeading>
+              <SubHeading>{title2}</SubHeading>
+              <PurchaseMethod>
+                Purchase Method: <span>{purchaseMethod}</span>{' '}
+              </PurchaseMethod>
+              <PurchaseMethod>
+                Purchase Price : <span>£{purchasePrice}</span>{' '}
+              </PurchaseMethod>
+              <PurchaseMethod>
+                Sale Price: <GreenSpan>£{salePrice}</GreenSpan>{' '}
+              </PurchaseMethod>
+              <PurchaseMethod>
+                ROI:<GreenSpan>{ROI}</GreenSpan>{' '}
+              </PurchaseMethod>
+              <PurchaseMethod>
+                {' '}
+                <GreenSpan>{heading}</GreenSpan>{' '}
+              </PurchaseMethod>
+            </InfoContainer>
 
-          <InfoImageContainer>
-            <InfoImage src={img} />
-          </InfoImageContainer>
+            <InfoImageContainer>
+              <InfoImage src={img} />
+            </InfoImageContainer>
+          </TopHalf>
+
+          <BottomHalf>
+            <HeadDescription>{description}</HeadDescription>
+          </BottomHalf>
         </TextContainer>
 
         <ImagesContainer>
@@ -310,12 +385,13 @@ const SingleDevelopment = () => {
               key={index}
               onClick={() => handleClick(item, index)}
             >
-              <Image src={item} />
+              <Image src={item.image} />
               <ImageContent
                 background={background}
                 onClick={() => setBackground(!background)}
               >
-                Image
+                <h4> {item.captionTitle}</h4>
+                <p>{item.caption}</p>
               </ImageContent>
             </GalleryContainer>
           ))}
