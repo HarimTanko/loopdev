@@ -93,6 +93,10 @@ const ImageContainer = styled.div`
   cursor: pointer;
   height: 400px;
   border: 0.5px solid #aad6fa;
+
+  @media screen and (max-width: 600px) {
+    height: 350px;
+  }
 `;
 
 const DevelopmentImage = styled.img`

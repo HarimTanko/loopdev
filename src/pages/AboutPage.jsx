@@ -39,7 +39,7 @@ const HeaderImage = styled.img`
   }
 
   @media screen and (max-width: 768px) {
-    height: 40vh;
+    height: 50vh;
   }
 `;
 
@@ -64,36 +64,59 @@ const Section = styled.div`
 `;
 const ImageContainer = styled.div`
   position: relative;
-  min-width: 30%;
-  margin: 1rem 1rem;
 `;
 const AboutImage = styled.img`
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  width: 400px;
+  float: right;
+  margin: 3rem 2rem 1rem;
+
+  @media screen and (max-width: 600px) {
+    margin: 3rem auto 1rem;
+    width: 90%;
+    float: none;
+  }
 `;
 const AboutCaption = styled.p`
   position: absolute;
   top: 1;
-  left: 0;
+  right: 3.4rem;
   font-family: 'Quicksand', sans-serif;
   font-size: 1.8rem;
   color: #548be3;
-  margin-top: 10px;
+  margin: 5px 0;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem;
+    top: 5px;
+    right: 7rem;
+  }
 `;
 const InfoContainer = styled.div`
-  wiidth: 50%;
   height: 100%;
 
   padding: 22.5px 45px;
   margin: 1rem 1rem 5rem;
   background: #ffffff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+
+  @media screen and (max-width: 713px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 10px;
+    margin: auto;
+  }
 `;
 const AboutInfo = styled.p`
   font-size: 1.2rem;
   margin-bottom: 1rem;
   line-height: 1.5;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const AboutPage = () => {
@@ -105,11 +128,11 @@ const AboutPage = () => {
       </Header>
 
       <Section>
-        <ImageContainer>
-          <AboutImage src={paul} />
-          <AboutCaption>Paul - Managing Director</AboutCaption>
-        </ImageContainer>
         <InfoContainer>
+          <ImageContainer>
+            <AboutImage src={paul} />
+            <AboutCaption>Paul - Managing Director</AboutCaption>
+          </ImageContainer>
           <AboutInfo>
             Developments, Lettings and Management Contracting are the three
             disciplines that Loop is proficient in and at the same time these

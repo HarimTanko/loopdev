@@ -18,9 +18,17 @@ const TextContainer = styled.div`
 const FooterHeading = styled.h3`
   font-size: 2.5rem;
   margin: 1rem 1rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.4rem;
+  }
 `;
 const FooterText = styled.p`
   font-size: 1.5rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 const IconsContainer = styled.div`
   width: 100%;

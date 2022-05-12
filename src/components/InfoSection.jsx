@@ -33,8 +33,8 @@ const ColumnLeft = styled.div`
   order: ${({ reverse }) => (reverse ? '2' : '1')};
 
   @media screen and (max-width: 768px) {
-    order: ${({ reverse }) => (reverse ? '1' : '2')};
     padding: 1rem 2rem;
+    order: 2;
 
     span {
       display: none;
@@ -47,11 +47,6 @@ const ColumnLeft = styled.div`
     color: #548be3;
 
     @media screen and (max-width: 930px) {
-      display: none;
-    }
-
-    @media screen and (max-width: 768px) {
-      display: none;
     }
   }
 
@@ -76,7 +71,7 @@ const ColumnRight = styled.div`
 
   justify-content: center;
   align-items: center;
-  order: ${({ reverse }) => (reverse ? 1 : 2)};
+  order: 1;
 
   @media screen and (max-width: 768px) {
     // margin-top: 80px;
@@ -121,7 +116,7 @@ const InfoSection = ({
               {buttonLabel}
             </Button>
           </ColumnLeft>
-          <ColumnRight reverse={reverse}>
+          <ColumnRight>
             <img src={imageOne} alt='lettings' />
           </ColumnRight>
         </Container>

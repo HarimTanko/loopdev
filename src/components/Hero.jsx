@@ -10,6 +10,9 @@ const SliderButtons = styled.div`
   right: 50px;
   display: flex;
   z-index: 10;
+
+  @media screen and (max-width: 800px) {
+  }
 `;
 
 const HeroSection = styled.section`
@@ -17,10 +20,6 @@ const HeroSection = styled.section`
   max-height: 1100px;
   position: relative;
   overflow: hidden;
-
-  @media screen and (max-width: 768px) {
-    height: 60vh;
-  }
 `;
 
 const HeroWrapper = styled.div`
@@ -65,6 +64,10 @@ const HeroSlider = styled.div`
       rgba(96, 172, 235, 0.6) 100%
     );
   }
+
+  @media screen and (max-width: 935px) {
+    height: 95vh;
+  }
 `;
 const HeroImage = styled.img`
   position: absolute;
@@ -73,6 +76,10 @@ const HeroImage = styled.img`
   width: 100vw;
   height: 100vh;
   object-fit: cover;
+
+  @media screen and (max-width: 935px) {
+    height: 95vh;
+  }
 `;
 const HeroContent = styled.div`
   position: relative;
@@ -95,6 +102,14 @@ const HeroContent = styled.div`
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
     text-align: left;
     margin-bottom: 0.8rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      font-size: 1.5rem;
+    }
   }
 
   h3 {
@@ -109,7 +124,6 @@ const HeroContent = styled.div`
 `;
 const Arrow = styled(IoMdArrowForward)`
   margin-left: 0.5rem;
-  font-size: 32px;
 `;
 
 const arrowButtons = css`
@@ -162,8 +176,6 @@ const Hero = ({ slides }) => {
       clearTimeout(timeout.current);
     }
     setCurrent(current === length - 1 ? 0 : current + 1);
-
-    // console.log(current);
   };
 
   const prevSlide = () => {
@@ -194,6 +206,7 @@ const Hero = ({ slides }) => {
                     css={`
                       font-size: 1.5rem;
                     `}
+                    big
                   >
                     {slide.label}
                     <Arrow />

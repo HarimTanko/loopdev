@@ -60,6 +60,10 @@ const DevelopmentHeading = styled.h1`
   color: #fff;
   margin-left: 2rem;
   text-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+
+  @media screen and (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -93,6 +97,10 @@ const ImageContainer = styled.div`
   cursor: pointer;
   height: 400px;
   border: 0.5px solid #aad6fa;
+
+  @media screen and (max-width: 600px) {
+    height: 350px;
+  }
 `;
 
 const DevelopmentImage = styled.img`

@@ -2,40 +2,50 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import couch from '../images/devpageImages/wendover-1/5.webp';
 
+const Container = styled.div`
+  margin: 0;
+  padding: 0;
+
+  height: 100vh;
+`;
+
 const Section = styled.div`
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75vh;
+  width: 90vw;
+  background: #fff;
+  box-shadow: 0 25px 30px rgba(0, 0, 0, 0.4);
   display: flex;
+
+  @media screen and (max-width: 760px) {
+    position: relative;
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
   width: 50%;
-  padding: 8% 0 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 45px;
-`;
-
-const InfoSection = styled.div`
-  position: absolute;
-  z-index: 12;
-  background: #ffffff;
-  max-width: 500px;
-  height: 80%;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-
+  height: 100%;
+  background: #548be3;
+  box-sizing: border-box;
   background: linear-gradient(
       0deg,
       rgba(58, 113, 201, 0.6),
       rgba(58, 113, 201, 0.9)
     ),
     url(${couch});
-
-  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem 2rem;
+  line-height: 1.5;
+
+  @media screen and (max-width: 760px) {
+    display: none;
+    width: 100%;
+  }
 `;
 
 const Heading = styled.h2`
@@ -49,27 +59,32 @@ const Heading = styled.h2`
 const Info = styled.p`
   color: #fff;
   z-index: 10;
-  line-height: 1.5;
-  font-size: 1.5rem;
+  line-height: 1.2;
+  font-size: 1.4rem;
 `;
 
 const Right = styled.div`
   width: 50%;
-  padding: 8% 0 0;
+  height: 100%;
+  background: #fff;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 760px) {
+    width: 100%;
+  }
 `;
 
-const FormSection = styled.div`
-  position: relative;
-  z-index: 1;
-  background: #ffffff;
-  max-width: 500px;
-  height: 80%;
-  margin: 0 0 100px;
-  padding: 45px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+const FormContainer = styled.form`
+  padding: 4rem 2rem;
 `;
 
-const FormContainer = styled.form``;
+const FormHeading = styled.h3`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Paytone One', sans-serif;
+  text-transform: uppercase;
+  color: #548be3;
+`;
 
 const inputStyle = css`
   outline: 0;
@@ -123,10 +138,10 @@ const FormButton = styled.button`
 
 const ContactPage = () => {
   return (
-    <Section>
-      <Left>
-        <InfoSection>
-          <Heading>Contact</Heading>
+    <Container>
+      <Section>
+        <Left>
+          <Heading>Contact Us</Heading>
           <Info>
             If you like what Loop have done so far and you're thinking of
             investing or would like to discuss a joint venture, then you need to
@@ -135,12 +150,12 @@ const ContactPage = () => {
             money to purchase. We're successful investors in property. Would you
             like to join us?
           </Info>
-        </InfoSection>
-      </Left>
+        </Left>
 
-      <Right>
-        <FormSection>
+        <Right>
           <FormContainer>
+            <FormHeading>Contact Us</FormHeading>
+
             <NameInput type='text' required placeholder='Name' />
             <EmailInput type='email' required placeholder='Email' />
             <SubjectInput type='text' required placeholder='Subject' />
@@ -154,9 +169,9 @@ const ContactPage = () => {
               Send
             </FormButton>
           </FormContainer>
-        </FormSection>
-      </Right>
-    </Section>
+        </Right>
+      </Section>
+    </Container>
   );
 };
 

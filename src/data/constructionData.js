@@ -196,7 +196,7 @@ export const constructionData = [
     title1: 'St Albans',
     title2: '2013 - Hamilton Road, St Albans',
     path: '2013-hamilton-road',
-    img: hamilton1,
+    img: hamilton4,
     images: [
       hamilton1,
       hamilton2,
