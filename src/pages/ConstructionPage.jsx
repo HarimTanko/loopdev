@@ -106,7 +106,6 @@ const ImageContent = styled.div`
   top: 0;
   bottom: 0;
   width: 100%;
-  height: 400px;
 
   opacity: 0;
   transition: 0.5s all ease-in-out;
@@ -119,9 +118,9 @@ const ImageContent = styled.div`
 
 const TextContainer = styled.div`
   width: 100%;
+
   padding: 5rem 0.8rem;
   display: flex;
-
   flex-direction: column;
 
   color: #fff;
@@ -134,17 +133,29 @@ const TextContainer = styled.div`
     display: flex;
     align-items: center;
   }
+
+  @media screen and (max-width: 600px) {
+    padding: 1rem 0.8rem;
+  }
 `;
 const DevelopmentTitle = styled.h3`
   font-size: 1.5rem;
   text-transform: uppercase;
   padding: 0.5rem 0;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 const DevPrices = styled.p`
   font-size: 1.5rem;
   margin: 0.5rem 0;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 const GraphIcon = styled(BsGraphUp)`

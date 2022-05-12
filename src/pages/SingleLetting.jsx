@@ -208,7 +208,6 @@ const GalleryContainer = styled.div`
     height: 100%;
   }
 `;
-
 const ImageContent = styled.div`
   background: transparent;
   position: absolute;
@@ -226,7 +225,7 @@ const ImageContent = styled.div`
     font-size: 2.5rem;
 
     @media screen and (max-width: 760px) {
-      margin: 0.5rem 1rem;
+      margin: 1rem 2rem;
       font-size: 1.5rem;
     }
   }
@@ -236,7 +235,7 @@ const ImageContent = styled.div`
     margin: 0 2rem;
 
     @media screen and (max-width: 760px) {
-      font-size: 0.5rem;
+      font-size: 1rem;
     }
   }
 
@@ -506,7 +505,7 @@ const SingleLetting = () => {
                 background={background}
                 onClick={() => setBackground(!background)}
               >
-                <PurchaseMethod>{item.captionTitle}</PurchaseMethod>
+                <h4>{item.captionTitle}</h4>
                 <p>{item.caption}</p>
               </ImageContent>
             </GalleryContainer>

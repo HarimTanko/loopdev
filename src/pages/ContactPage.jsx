@@ -76,6 +76,10 @@ const Right = styled.div`
 
 const FormContainer = styled.form`
   padding: 4rem 2rem;
+
+  @media screen and (max-width: 760px) {
+    padding: 2rem 2rem;
+  }
 `;
 
 const FormHeading = styled.h3`

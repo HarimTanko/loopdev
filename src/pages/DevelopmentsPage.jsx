@@ -115,7 +115,6 @@ const ImageContent = styled.div`
   top: 0;
   bottom: 0;
   width: 100%;
-  height: 400px;
 
   opacity: 0;
   transition: 0.5s all ease-in-out;
